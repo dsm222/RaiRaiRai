@@ -28,16 +28,19 @@
 ### UE5.8 源码索引
 
 - UE5.8 实际源码位置：`C:\Program Files\Epic Games\UE_5.8`
-- UE5.8 主源码索引视图：`C:\Users\dsm\Desktop\UE58-EngineSource-Main.index-view`
+- UE5.8 主源码索引视图：`C:\Users\dsm\Desktop\UE58-EngineSource-Main.source-view`
 - UE5.8 主源码索引名：`UE58-EngineSource-Main`
+- 旧的 junction 视图 `C:\Users\dsm\Desktop\UE58-EngineSource-Main.index-view` 不作为索引入口使用；codebase-memory-mcp 不会正确跟随该视图建立完整源码图。
 
 需要查 UE 源码时，先查 `UE58-EngineSource-Main`。如果需要查看或维护 UE 索引，请先阅读：
 
 ```text
-C:\Users\dsm\Desktop\UE58-EngineSource-Main.index-view\AGENTS.md
+C:\Users\dsm\Desktop\UE58-EngineSource-Main.source-view\AGENTS.md
 ```
 
 渐进式披露规则：先查项目索引 `RaiRaiRai`；只有当问题涉及 Unreal 类型、宏、Actor/Component、UMG、Slate、Input、Chaos、Build.cs、ModuleRules、Editor API 或引擎调用链时，再查 `UE58-EngineSource-Main`。不要一开始就全局搜索 UE 源码。
+
+UE 源码索引视图使用 hardlink 文件。不要编辑该视图里的 UE 源码文件，因为写入会影响已安装的引擎源码。需要改项目代码时，只改 `C:\Users\dsm\Desktop\RaiRaiRai` 下的文件。
 
 
 
