@@ -1,7 +1,7 @@
 param(
     [switch]$IncludeUE,
-    [int]$MemoryLimitMB = 2200,
-    [int]$TimeoutSeconds = 420
+    [int]$MemoryLimitMB = 10000,
+    [int]$TimeoutSeconds = 2400
 )
 
 $ErrorActionPreference = "Stop"
@@ -85,27 +85,10 @@ if (-not $IncludeUE) {
 }
 
 $ueIndexes = @(
-    @{ Project = "UE58-CoreEssential-Fast"; Root = "C:\Users\dsm\Desktop\UE58-CoreEssential.fast-view" },
-    @{ Project = "UE58-UI-Fast"; Root = "C:\Users\dsm\Desktop\UE58-UI.fast-view" },
-    @{ Project = "UE58-Chaos-Fast"; Root = "C:\Users\dsm\Desktop\UE58-Chaos.fast-view" },
-    @{ Project = "UE58-EngineAPI-Fast"; Root = "C:\Users\dsm\Desktop\UE58-EngineAPI.fast-view" },
-    @{ Project = "UE58-EnginePrivateCore-Fast"; Root = "C:\Users\dsm\Desktop\UE58-EnginePrivateCore.fast-view" },
-    @{ Project = "UE58-EnginePrivateAnimation-Fast"; Root = "C:\Users\dsm\Desktop\UE58-EnginePrivateAnimation.fast-view" },
-    @{ Project = "UE58-EnginePrivateRendering-Fast"; Root = "C:\Users\dsm\Desktop\UE58-EnginePrivateRendering.fast-view" },
-    @{ Project = "UE58-EnginePrivateWorld-Fast"; Root = "C:\Users\dsm\Desktop\UE58-EnginePrivateWorld.fast-view" },
-    @{ Project = "UE58-EnginePrivateOther-Fast"; Root = "C:\Users\dsm\Desktop\UE58-EnginePrivateOther.fast-view" },
-    @{ Project = "UE58-RuntimeOther-AC-Fast"; Root = "C:\Users\dsm\Desktop\UE58-RuntimeOther-AC.fast-view" },
-    @{ Project = "UE58-RuntimeOther-DH-Fast"; Root = "C:\Users\dsm\Desktop\UE58-RuntimeOther-DH.fast-view" },
-    @{ Project = "UE58-RuntimeOther-IM-Fast"; Root = "C:\Users\dsm\Desktop\UE58-RuntimeOther-IM.fast-view" },
-    @{ Project = "UE58-RuntimeOther-NR-Fast"; Root = "C:\Users\dsm\Desktop\UE58-RuntimeOther-NR.fast-view" },
-    @{ Project = "UE58-RuntimeOther-SZ-Fast"; Root = "C:\Users\dsm\Desktop\UE58-RuntimeOther-SZ.fast-view" },
-    @{ Project = "UE58-Editor-AF-Fast"; Root = "C:\Users\dsm\Desktop\UE58-Editor-AF.fast-view" },
-    @{ Project = "UE58-Editor-GM-Fast"; Root = "C:\Users\dsm\Desktop\UE58-Editor-GM.fast-view" },
-    @{ Project = "UE58-Editor-NS-Fast"; Root = "C:\Users\dsm\Desktop\UE58-Editor-NS.fast-view" },
-    @{ Project = "UE58-Editor-TZ-Fast"; Root = "C:\Users\dsm\Desktop\UE58-Editor-TZ.fast-view" },
-    @{ Project = "UE58-Developer-AM-Fast"; Root = "C:\Users\dsm\Desktop\UE58-Developer-AM.fast-view" },
-    @{ Project = "UE58-Developer-NZ-Fast"; Root = "C:\Users\dsm\Desktop\UE58-Developer-NZ.fast-view" },
-    @{ Project = "UE58-Programs-Fast"; Root = "C:\Users\dsm\Desktop\UE58-Programs.fast-view" }
+    @{ Project = "UE58-Runtime-Fast"; Root = "C:\Program Files\Epic Games\UE_5.8\Engine\Source\Runtime" },
+    @{ Project = "UE58-Editor-Fast"; Root = "C:\Program Files\Epic Games\UE_5.8\Engine\Source\Editor" },
+    @{ Project = "UE58-Developer-Fast"; Root = "C:\Program Files\Epic Games\UE_5.8\Engine\Source\Developer" },
+    @{ Project = "UE58-Programs-Fast"; Root = "C:\Program Files\Epic Games\UE_5.8\Engine\Source\Programs" }
 )
 
 foreach ($index in $ueIndexes) {
