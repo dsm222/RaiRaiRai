@@ -2,32 +2,8 @@
 - `.agents/skills/rairairai-tdd/SKILL.md`：项目级 TDD 技能，负责把当前项目架构映射到 Matt 的基础 TDD 技能并维护项目特化测试方式。
 
 ## codebase-memory-mcp
-
-本项目使用 codebase-memory-mcp 做代码知识图谱。索引必须隔离，不能把项目代码和 UE 引擎源码放进同一个索引项目。
-
-### 项目代码索引
-
-- 项目索引名：`RaiRaiRai`
-- 项目索引根：`C:\Users\dsm\Desktop\RaiRaiRai`
-- 推荐命令：
-
-```powershell
-& 'C:\Users\dsm\AppData\Local\codebase-memory-mcp\codebase-memory-mcp.exe' cli index_repository --repo-path 'C:\Users\dsm\Desktop\RaiRaiRai' --name RaiRaiRai --mode full --persistence true
-```
-
-- 项目索引只服务本游戏项目代码和项目文档。
-- 不要让项目索引跟随 `.codebase-memory-views/`、`Binaries/`、`Intermediate/`、`Saved/`、`DerivedDataCache/`、`.vs/`、`.idea/` 或 `Content/`。
-- 本项目已建立本地 Git 仓库。修改项目代码后，优先用 Git 变更范围辅助刷新和影响分析：
-
-```powershell
-& 'C:\Users\dsm\AppData\Local\codebase-memory-mcp\codebase-memory-mcp.exe' cli detect_changes --project RaiRaiRai --since HEAD~1
-```
-
-项目代码量小时，可以在重要修改后直接重建 `RaiRaiRai` 索引。不要重建 UE 引擎索引。
-
-### UE5.8 源码索引
-UE5.8 源码在 `C:\Program Files\Epic Games\UE_5.8\Engine\Source`；需要查引擎源码时，先读取 `C:\Program Files\Epic Games\UE_5.8\Engine\Source\AGENTS.md`。
-不要把 UE 源码混进 `RaiRaiRai` 项目索引；项目代码仍只查 `RaiRaiRai` 索引。
+项目索引：`RaiRaiRai`，根目录 `C:\Users\dsm\Desktop\RaiRaiRai`，使用 `full`，只包含本项目代码和文档。
+UE5.8 源码：`C:\Program Files\Epic Games\UE_5.8\Engine\Source`；查引擎源码前先读取 `C:\Program Files\Epic Games\UE_5.8\Engine\Source\AGENTS.md`，不要混入项目索引。
 
 
 
