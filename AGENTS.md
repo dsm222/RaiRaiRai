@@ -28,19 +28,46 @@
 ### UE5.8 源码索引
 
 - UE5.8 实际源码位置：`C:\Program Files\Epic Games\UE_5.8`
-- UE5.8 主源码索引视图：`C:\Users\dsm\Desktop\UE58-EngineSource-Main.source-view`
-- UE5.8 主源码索引名：`UE58-EngineSource-Main`
+- UE5.8 小核心 fast 索引视图：`C:\Users\dsm\Desktop\UE58-CoreEssential.fast-view`
+- UE5.8 小核心 fast 索引名：`UE58-CoreEssential-Fast`
+- UE5.8 UI fast 索引名：`UE58-UI-Fast`
+- UE5.8 Chaos fast 索引名：`UE58-Chaos-Fast`
+- UE5.8 Runtime/Engine fast 索引名：`UE58-EngineAPI-Fast`、`UE58-EnginePrivateCore-Fast`、`UE58-EnginePrivateAnimation-Fast`、`UE58-EnginePrivateRendering-Fast`、`UE58-EnginePrivateWorld-Fast`、`UE58-EnginePrivateOther-Fast`
+- UE5.8 其他 Runtime fast 索引名：`UE58-RuntimeOther-AC-Fast`、`UE58-RuntimeOther-DH-Fast`、`UE58-RuntimeOther-IM-Fast`、`UE58-RuntimeOther-NR-Fast`、`UE58-RuntimeOther-SZ-Fast`
+- UE5.8 Editor fast 索引名：`UE58-Editor-AF-Fast`、`UE58-Editor-GM-Fast`、`UE58-Editor-NS-Fast`、`UE58-Editor-TZ-Fast`
+- UE5.8 Developer/Programs fast 索引名：`UE58-Developer-AM-Fast`、`UE58-Developer-NZ-Fast`、`UE58-Programs-Fast`
+- 废弃索引名：`UE58-EngineSource-Main`。不要继续使用这个单库 UE 大索引。
+- 废弃索引名：`UE58-CoreRuntime-Moderate`。它的核心范围过大，不要继续使用。
+- 废弃索引名：`UE58-EngineSource-Other-Fast`。它的范围过大，不要继续使用。
+- 废弃索引名：`UE58-CoreEssential-Moderate`。在本机上该索引会快速超过安全内存阈值。
+- 废弃索引名：`UE58-RuntimeGameplay-Fast`、`UE58-RuntimeOther-Fast`、`UE58-Editor-Fast`、`UE58-DeveloperPrograms-Fast`。这些范围仍然过大，已拆成更小索引。
 - 旧的 junction 视图 `C:\Users\dsm\Desktop\UE58-EngineSource-Main.index-view` 不作为索引入口使用；codebase-memory-mcp 不会正确跟随该视图建立完整源码图。
+- 旧的全量 hardlink 视图 `C:\Users\dsm\Desktop\UE58-EngineSource-Main.source-view` 不作为索引入口使用；它已被分层索引取代。
 
-需要查 UE 源码时，先查 `UE58-EngineSource-Main`。如果需要查看或维护 UE 索引，请先阅读：
+需要查 UE 源码时：
+
+- 先查 `UE58-CoreEssential-Fast`，用于 Core、CoreUObject、InputCore、ApplicationCore、Projects、Json、JsonUtilities、PhysicsCore。
+- 涉及 UMG/Slate 时，查 `UE58-UI-Fast`。
+- 涉及 Chaos 时，查 `UE58-Chaos-Fast`。
+- 涉及 Actor/Component、World、GameFramework 或 `Runtime/Engine` 时，按范围查 `UE58-EngineAPI-Fast` 或 `UE58-EnginePrivate*-Fast`。
+- 涉及其他 Runtime 模块时，按模块首字母查 `UE58-RuntimeOther-AC-Fast`、`DH`、`IM`、`NR`、`SZ`。
+- 涉及 Editor API 时，按模块首字母查 `UE58-Editor-AF-Fast`、`GM`、`NS`、`TZ`。
+- 涉及 Developer 或 Programs 工具链时，查 `UE58-Developer-AM-Fast`、`UE58-Developer-NZ-Fast` 或 `UE58-Programs-Fast`。
+
+如果需要查看或维护 UE 索引，请先阅读：
 
 ```text
-C:\Users\dsm\Desktop\UE58-EngineSource-Main.source-view\AGENTS.md
+C:\Users\dsm\Desktop\UE58-CoreEssential.fast-view\AGENTS.md
+C:\Users\dsm\Desktop\UE58-EngineAPI.fast-view\AGENTS.md
+C:\Users\dsm\Desktop\UE58-UI.fast-view\AGENTS.md
+C:\Users\dsm\Desktop\UE58-Chaos.fast-view\AGENTS.md
 ```
 
-渐进式披露规则：先查项目索引 `RaiRaiRai`；只有当问题涉及 Unreal 类型、宏、Actor/Component、UMG、Slate、Input、Chaos、Build.cs、ModuleRules、Editor API 或引擎调用链时，再查 `UE58-EngineSource-Main`。不要一开始就全局搜索 UE 源码。
+渐进式披露规则：先查项目索引 `RaiRaiRai`；只有当问题涉及 Unreal 类型、宏、Actor/Component、UMG、Slate、Input、Chaos、Build.cs、ModuleRules、Editor API 或引擎调用链时，再查对应的 UE 小索引。不要一开始就全局搜索 UE 源码。
 
-UE 源码索引视图使用 hardlink 文件。不要编辑该视图里的 UE 源码文件，因为写入会影响已安装的引擎源码。需要改项目代码时，只改 `C:\Users\dsm\Desktop\RaiRaiRai` 下的文件。
+安全规则：不要再建立单库 UE 大索引；不要对 UE 源码跑 `moderate` 或 `full`。UE 索引必须分批、单进程、低优先级执行；如果内存超过 2.2 GB 或系统明显卡顿，应停止当前 UE 索引任务，保留已完成的小索引。优先使用 `Scripts\UpdateCodebaseMemory.ps1`，默认只更新项目索引；只有显式传 `-IncludeUE` 才会按安全列表逐块刷新 UE 索引。
+
+UE 源码索引视图使用 hardlink 文件。不要编辑这些视图里的 UE 源码文件，因为写入会影响已安装的引擎源码。需要改项目代码时，只改 `C:\Users\dsm\Desktop\RaiRaiRai` 下的文件。
 
 
 
