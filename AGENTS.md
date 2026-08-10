@@ -26,39 +26,8 @@
 项目代码量小时，可以在重要修改后直接重建 `RaiRaiRai` 索引。不要重建 UE 引擎索引。
 
 ### UE5.8 源码索引
-
-- UE5.8 实际源码位置：`C:\Program Files\Epic Games\UE_5.8`
-- UE5.8 Runtime fast 索引名：`UE58-Runtime-Fast`
-- UE5.8 Editor fast 索引名：`UE58-Editor-Fast`
-- UE5.8 Developer fast 索引名：`UE58-Developer-Fast`
-- UE5.8 Programs fast 索引名：`UE58-Programs-Fast`
-- 废弃索引名：`UE58-EngineSource-Main`。不要继续使用这个单库 UE 大索引。
-- 废弃索引名：`UE58-CoreRuntime-Moderate`、`UE58-CoreEssential-Moderate`。不要对 UE 源码跑 `moderate`。
-- 废弃索引名：各种临时细分索引，例如 `UE58-Editor-AF-Fast`、`UE58-EngineAPI-Fast`、`UE58-RuntimeOther-*-Fast`。最终方案只保留四个 UE 顶层 fast 索引。
-- 旧的 junction 视图 `C:\Users\dsm\Desktop\UE58-EngineSource-Main.index-view` 不作为索引入口使用；codebase-memory-mcp 不会正确跟随该视图建立完整源码图。
-- 旧的 hardlink 视图目录不作为索引入口使用；最终 UE 索引直接以 `C:\Program Files\Epic Games\UE_5.8\Engine\Source` 下的四个顶层源码目录为根。
-
-需要查 UE 源码时：
-
-- 运行时、Core、UObject、Actor/Component、UMG/Slate、Chaos、RHI、Gameplay 等查 `UE58-Runtime-Fast`。
-- Editor API 查 `UE58-Editor-Fast`。
-- Developer 工具模块查 `UE58-Developer-Fast`。
-- Programs、UnrealBuildTool、AutomationTool、UHT 等查 `UE58-Programs-Fast`。
-
-如果需要查看或维护 UE 索引，请先阅读：
-
-```text
-C:\Program Files\Epic Games\UE_5.8\Engine\Source\Runtime
-C:\Program Files\Epic Games\UE_5.8\Engine\Source\Editor
-C:\Program Files\Epic Games\UE_5.8\Engine\Source\Developer
-C:\Program Files\Epic Games\UE_5.8\Engine\Source\Programs
-```
-
-渐进式披露规则：先查项目索引 `RaiRaiRai`；只有当问题涉及 Unreal 类型、宏、Actor/Component、UMG、Slate、Input、Chaos、Build.cs、ModuleRules、Editor API 或引擎调用链时，再查对应的 UE 小索引。不要一开始就全局搜索 UE 源码。
-
-安全规则：不要再建立单库 UE 大索引；不要对 UE 源码跑 `moderate` 或 `full`。UE 索引按 UE4.27 的成功做法拆成 `Runtime / Editor / Developer / Programs` 四个顶层 `fast` 索引。优先使用 `Scripts\UpdateCodebaseMemory.ps1`，默认只更新项目索引；只有显式传 `-IncludeUE` 才会逐块刷新 UE 索引。刷新 UE 时单进程、低优先级执行，内存保护阈值默认 10 GB。
-
-不要编辑 UE 安装目录里的源码。需要改项目代码时，只改 `C:\Users\dsm\Desktop\RaiRaiRai` 下的文件。
+UE5.8 源码在 `C:\Program Files\Epic Games\UE_5.8\Engine\Source`；需要查引擎源码时，先读取 `C:\Program Files\Epic Games\UE_5.8\Engine\Source\AGENTS.md`。
+不要把 UE 源码混进 `RaiRaiRai` 项目索引；项目代码仍只查 `RaiRaiRai` 索引。
 
 
 
