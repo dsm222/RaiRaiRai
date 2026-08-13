@@ -1,4 +1,0 @@
-interface:
-  display_name: "AI 修改审核包"
-  short_description: "为真实代码修改生成、同步并严格校验 MyCocs 中文审核包"
-  default_prompt: "使用 $ai-change-review 在修改代码前保存快照，并在完成后生成可审核的中文改动说明。"

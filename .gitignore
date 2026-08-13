@@ -1,14 +1,45 @@
+# Unreal Engine generated files
 Binaries/
 DerivedDataCache/
 Intermediate/
 Saved/
+**/Binaries/
+**/Intermediate/
+**/Saved/
+
+# Generated project files and IDE state
 .vs/
 .idea/
+.vscode/
+*.sln
+*.slnx
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.opensdf
+*.opendb
+*.sdf
+*.VC.db
+*.VC.VC.opendb
+*.xcodeproj
+*.xcworkspace
+.vsconfig
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.cache
+Thumbs.db
+.DS_Store
+
+# Local AI and code-indexing workspace files
+AGENTS.md
+MyCocs/
+.codex/
+.agents/
+.cbmignore
 .codebase-memory/
 .codebase-memory-views/
-
-*.suo
-*.opensdf
-*.sdf
-*.tmp
-*.log
+Scripts/UpdateCodebaseMemory.ps1
