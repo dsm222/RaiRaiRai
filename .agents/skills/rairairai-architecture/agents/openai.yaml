@@ -1,4 +1,0 @@
-interface:
-  display_name: "RaiRaiRai Architecture"
-  short_description: "Maintain and apply the current RaiRaiRai architecture"
-  default_prompt: "Use $rairairai-architecture to design this change within the project's current architecture."

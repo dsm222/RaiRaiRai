@@ -1,4 +1,0 @@
-interface:
-  display_name: "RaiRaiRai TDD"
-  short_description: "Apply project TDD on top of Matt's TDD skill"
-  default_prompt: "Use $rairairai-tdd to implement this change test-first in RaiRaiRai."
